@@ -1,9 +1,9 @@
 import { defineStore } from 'pinia';
 import { PortFeature, PortFeatureCollection } from '@/types/GeoJSONTypes';
-import portsGeoJson from '@/data/ports.geojson';
+import portsGeoJson from '@/data/ports.json';
 
 // Explicitly tell TypeScript the type of geojsonData
-const typedGeojsonData = portsGeoJson as PortFeatureCollection;
+const typedGeojsonData = (portsGeoJson as any) as PortFeatureCollection;
 
 
 interface PortState {
