@@ -2,7 +2,7 @@
 <template>
   <div class="h-screen flex flex-col overflow-hidden">
     <Header class="h-[10%]" />
-    <main class="h-[85%] overflow-y-auto">
+    <main class="h-[90%] overflow-y-auto">
       <MapboxComponent class="w-full h-screen" />
     </main>
     <Footer class="h-[5%]" />

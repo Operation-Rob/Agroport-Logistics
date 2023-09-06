@@ -1,6 +1,6 @@
 <template>
     <div class="flex items-center justify-center bg-black">
-      <img :src="agroImage" alt="Agro Image" class="w-auto h-10" />
+      <img :src="agroImage" alt="Agro Image" class="w-auto h-12" />
     </div>
   </template>
   
