@@ -1,0 +1,258 @@
+{
+    "type": "FeatureCollection",
+    "features": [
+        {
+            "id": "0",
+            "type": "Feature",
+            "properties": {
+                "Country": "Qatar",
+                "Latitude": 24.93598,
+                "Longitude": 51.59607,
+                "MOP Regional Price (usd/t)": 495,
+                "Manufacturer": "Muntajat",
+                "Port ": "Mesaieed",
+                "Price Region": "Middle East",
+                "Primary Export": "Urea",
+                "UAN Regional Price (usd/t)": "unknown",
+                "Urea Regional Price (usd/t)": 336
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    51.59607,
+                    24.93598
+                ]
+            }
+        },
+        {
+            "id": "1",
+            "type": "Feature",
+            "properties": {
+                "Country": "RSA",
+                "Latitude": 27.035,
+                "Longitude": 49.6795,
+                "MOP Regional Price (usd/t)": 495,
+                "Manufacturer": "Sabic",
+                "Port ": "Al Jubail",
+                "Price Region": "Middle East",
+                "Primary Export": "Urea",
+                "UAN Regional Price (usd/t)": "unknown",
+                "Urea Regional Price (usd/t)": 336
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    49.6795,
+                    27.035
+                ]
+            }
+        },
+        {
+            "id": "2",
+            "type": "Feature",
+            "properties": {
+                "Country": "Indonesia",
+                "Latitude": 0.1494564,
+                "Longitude": 117.5247,
+                "MOP Regional Price (usd/t)": "unknown",
+                "Manufacturer": "Kaltim",
+                "Port ": "Bontang",
+                "Price Region": "Indonesia",
+                "Primary Export": "Urea",
+                "UAN Regional Price (usd/t)": "unknown",
+                "Urea Regional Price (usd/t)": 367
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    117.5247,
+                    0.1494564
+                ]
+            }
+        },
+        {
+            "id": "3",
+            "type": "Feature",
+            "properties": {
+                "Country": "Bahrain",
+                "Latitude": 26.15065,
+                "Longitude": 50.6529,
+                "MOP Regional Price (usd/t)": 495,
+                "Manufacturer": "GPIC",
+                "Port ": "Sitra",
+                "Price Region": "Middle East",
+                "Primary Export": "Urea",
+                "UAN Regional Price (usd/t)": "unknown",
+                "Urea Regional Price (usd/t)": 336
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    50.6529,
+                    26.15065
+                ]
+            }
+        },
+        {
+            "id": "4",
+            "type": "Feature",
+            "properties": {
+                "Country": "Malaysia",
+                "Latitude": 5.041089,
+                "Longitude": 115.5064,
+                "MOP Regional Price (usd/t)": "unknown",
+                "Manufacturer": "Petronas",
+                "Port ": "Sipitang",
+                "Price Region": "Malaysia",
+                "Primary Export": "Urea",
+                "UAN Regional Price (usd/t)": "unknown",
+                "Urea Regional Price (usd/t)": 375
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    115.5064,
+                    5.041089
+                ]
+            }
+        },
+        {
+            "id": "5",
+            "type": "Feature",
+            "properties": {
+                "Country": "USA",
+                "Latitude": 30.45484,
+                "Longitude": -91.19211,
+                "MOP Regional Price (usd/t)": "unknown",
+                "Manufacturer": "CF Industries",
+                "Port ": "Donaldsonville",
+                "Price Region": null,
+                "Primary Export": "UAN",
+                "UAN Regional Price (usd/t)": "unknown",
+                "Urea Regional Price (usd/t)": "unknown"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -91.19211,
+                    30.45484
+                ]
+            }
+        },
+        {
+            "id": "6",
+            "type": "Feature",
+            "properties": {
+                "Country": "Trinidad",
+                "Latitude": 10.3929,
+                "Longitude": -61.49399,
+                "MOP Regional Price (usd/t)": "unknown",
+                "Manufacturer": "Helm",
+                "Port ": "Port Lisas",
+                "Price Region": null,
+                "Primary Export": "UAN",
+                "UAN Regional Price (usd/t)": "unknown",
+                "Urea Regional Price (usd/t)": "unknown"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -61.49399,
+                    10.3929
+                ]
+            }
+        },
+        {
+            "id": "7",
+            "type": "Feature",
+            "properties": {
+                "Country": "Russia",
+                "Latitude": 44.72006,
+                "Longitude": 37.81373,
+                "MOP Regional Price (usd/t)": "unknown",
+                "Manufacturer": "Eurochem",
+                "Port ": "Novorossiysk",
+                "Price Region": null,
+                "Primary Export": "UAN",
+                "UAN Regional Price (usd/t)": "unknown",
+                "Urea Regional Price (usd/t)": "unknown"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    37.81373,
+                    44.72006
+                ]
+            }
+        },
+        {
+            "id": "8",
+            "type": "Feature",
+            "properties": {
+                "Country": "Egypt",
+                "Latitude": 29.51988,
+                "Longitude": 34.99279,
+                "MOP Regional Price (usd/t)": "unknown",
+                "Manufacturer": "APC",
+                "Port ": "Aqaba",
+                "Price Region": "Egypt",
+                "Primary Export": "MOP",
+                "UAN Regional Price (usd/t)": 170,
+                "Urea Regional Price (usd/t)": 320
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    34.99279,
+                    29.51988
+                ]
+            }
+        },
+        {
+            "id": "9",
+            "type": "Feature",
+            "properties": {
+                "Country": "USA",
+                "Latitude": 43.6515,
+                "Longitude": -70.254,
+                "MOP Regional Price (usd/t)": "unknown",
+                "Manufacturer": "Canpotex",
+                "Port ": "Portland",
+                "Price Region": "US Pacific NW",
+                "Primary Export": "MOP",
+                "UAN Regional Price (usd/t)": "unknown",
+                "Urea Regional Price (usd/t)": "unknown"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -70.254,
+                    43.6515
+                ]
+            }
+        },
+        {
+            "id": "10",
+            "type": "Feature",
+            "properties": {
+                "Country": "RSA",
+                "Latitude": 27.55828,
+                "Longitude": 49.18322,
+                "MOP Regional Price (usd/t)": 495,
+                "Manufacturer": "Maaden",
+                "Port ": "Ras Al Khair",
+                "Price Region": "Middle East",
+                "Primary Export": "MAP",
+                "UAN Regional Price (usd/t)": "unknown",
+                "Urea Regional Price (usd/t)": null
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    49.18322,
+                    27.55828
+                ]
+            }
+        }
+    ]
+}
