@@ -1,15 +1,19 @@
 <template>
-  <div>
-      <MapboxComponent />
-  </div>
+  <main>
+    <MapboxComponent class="w-full h-screen" />
+  </main>
 </template>
 
 <script lang="ts">
-import MapboxComponent from '../components/Mapbox.vue'
+import MapboxComponent from '../components/Mapbox/Mapbox.vue'
+import LeftSidebar from '../components/Sidebars/LeftSidebar.vue'
+import RightSidebar from '../components/Sidebars/RightSidebar.vue'
 
 export default {
   components: {
-      MapboxComponent
+    MapboxComponent,
+    LeftSidebar,
+    RightSidebar
   }
 }
 </script>
