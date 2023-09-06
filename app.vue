@@ -5,7 +5,7 @@
 </template>
 
 <script lang="ts">
-import MapboxComponent from '../components/Mapbox.vue'
+import MapboxComponent from '../components/Mapbox/Mapbox.vue'
 
 export default {
   components: {
