@@ -3,8 +3,8 @@
   <div class="h-screen flex flex-col overflow-hidden">
     <Header class="h-[10%]" />
     <main class="h-[90%] overflow-y-hidden">
-      <LeftSidebar />
-      <MapboxComponent class="w-full h-screen" />
+      <LeftSidebar @focus-on-ship="focusOnShip" />
+      <MapboxComponent ref="mapboxRef" class="w-full h-screen" />
     </main>
     <Footer class="h-[5%] z-20" />
   </div>
@@ -24,6 +24,11 @@ export default {
     RightSidebar,
     Header,
     Footer
+  },
+  methods: {
+    focusOnShip(shipName: string) {
+      this.$refs.mapboxRef.zoomToShip(shipName);
+    }
   }
 }
 </script>

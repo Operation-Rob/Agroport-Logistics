@@ -5,6 +5,7 @@
             <ul class="space-y-3">
                 <ShipCard v-for="ship in filteredShips"
                     :key="ship.properties['Vessel Name']"
+                    @ship-selected="handleShipSelected"
                     :shipName="ship.properties['Vessel Name']"
                     :shipType="ship.properties['Vessel Type - Detailed']"
                     :cargo="ship.properties['Product']"
@@ -25,11 +26,16 @@ import ShipCard from './ShipCard.vue';
         components: {
         ShipCard
     },
-    setup() {
+    setup(props, { emit }) {
         const shipsStore = useShipsStore();
         const filteredShips = computed(() => shipsStore.filteredShips);
+        const handleShipSelected = (shipName: string) => {
+            emit('focus-on-ship', shipName);
+        };
+
         return {
-            filteredShips
+            filteredShips,
+            handleShipSelected
         };
     }        
     }

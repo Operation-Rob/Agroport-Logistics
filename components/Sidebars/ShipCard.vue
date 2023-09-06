@@ -1,6 +1,6 @@
 <template>
 <li class="outline rounded-md bg-gray-950">
-    <div class="p-2 pt-1">
+    <div class="p-2 pt-1" @click="cardClicked">
         <div>{{ shipName }}</div>
         <div class="italic text-sm">{{ shipType }}</div>
         <div class="text-sm">ETA: {{ eta }}</div>
@@ -12,29 +12,34 @@
 
 <script lang="ts">
 export default {
-name: 'ShipCard',
-props: {
-    shipName: {
-        type: String,
-        required: true
+    name: 'ShipCard',
+    props: {
+        shipName: {
+            type: String,
+            required: true
+        },
+        shipType: {
+            type: String,
+            required: true
+        },
+        eta: {
+            type: String,
+            required: true
+        },
+        cargo: {
+            type: String,
+            required: true
+        },
+        volume: {
+            type: String,
+            required: true
+        }
     },
-    shipType: {
-        type: String,
-        required: true
-    },
-    eta: {
-        type: String,
-        required: true
-    },
-    cargo: {
-        type: String,
-        required: true
-    },
-    volume: {
-        type: String,
-        required: true
+    methods: {
+        cardClicked() {
+            this.$emit('ship-selected', this.shipName);
+        }
     }
-}
 }
 </script>
 
