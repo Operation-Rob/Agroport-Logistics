@@ -5,12 +5,6 @@ import portsGeoJson from '@/data/ports.json';
 // Explicitly tell TypeScript the type of geojsonData
 const typedGeojsonData = (portsGeoJson as any) as PortFeatureCollection;
 
-
-interface PortState {
-    ports: any;  // Replace `any` with the actual type of your GeoJSON data
-    filters: Record<string, unknown>;
-}
-
 export const usePortsStore = defineStore({
     id: 'ports',
     state: (): { ports: PortFeatureCollection, filters: Record<string, unknown> } => ({
