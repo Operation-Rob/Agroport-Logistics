@@ -1,0 +1,30 @@
+{
+    "type": "FeatureCollection",
+    "features": [
+      {
+        "type": "Feature",
+        "properties": {
+          "name": "Bontang Pupuk Kaltim Fertilizer",
+          "country": "Indonesia",
+          "manufacturer": "Kaltim"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [117.494818, 0.177408]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "name": "The Port of Sipitang",
+          "country": "Malaysia",
+          "manufacturer": "Petronas"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [115.514265, 5.041236]
+        }
+      }
+    ]
+  }
+  
