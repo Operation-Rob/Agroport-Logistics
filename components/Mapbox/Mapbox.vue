@@ -58,14 +58,14 @@ export default {
                 addMarkers(shipsStore.filteredShips, shipMarkers);
             });
 
-            watch(portsStore.filteredPorts, (newPorts) => {
+            watch(portsStore.filters, () => {
                 clearMarkers(portMarkers);
-                addMarkers(newPorts, portMarkers, '#FF0000');
+                addMarkers(shipsStore.filteredShips, portMarkers, '#FF0000');
             });
 
-            watch(shipsStore.filteredShips, (newShips) => {
+            watch(shipsStore.filters, () => {
                 clearMarkers(shipMarkers);
-                addMarkers(newShips, shipMarkers);
+                addMarkers(shipsStore.filteredShips, shipMarkers);
             });
 
             onUnmounted(() => {
