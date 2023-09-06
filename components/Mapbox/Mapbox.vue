@@ -8,12 +8,18 @@ import mapboxgl from 'mapbox-gl';
 import { usePortsStore } from '@/stores/portsStore';
 import { useShipsStore } from '@/stores/shipsStore';
 import 'mapbox-gl/dist/mapbox-gl.css';
+import { reactive } from 'vue';
+
+const state = reactive({
+    map: null as mapboxgl.Map | null,
+});
+
+let shipMarkersMap: Record<string, mapboxgl.Marker> = {};
 
 export default {
     name: 'MapboxComponent',
     setup() {
         const mapContainer = ref(null);
-        let map: mapboxgl.Map | null = null;
 
         let portMarkers: mapboxgl.Marker[] = [];
         let shipMarkers: mapboxgl.Marker[] = [];
@@ -29,9 +35,14 @@ export default {
 
                 const marker = new mapboxgl.Marker(options)
                     .setLngLat([longitude, latitude])
-                    .addTo(map!);
+                    .addTo(state.map);
 
                 markersArray.push(marker);
+
+                if (!color) { /* Right now markers without color are ships... will need to change later */
+                    const shipName = item.properties['Vessel Name'];
+                    shipMarkersMap[shipName] = marker;
+                }
             }
         };
 
@@ -40,20 +51,21 @@ export default {
                 marker.remove();
             }
             markersArray.length = 0;
+            shipMarkersMap = {};
         };
 
         onMounted(() => {
             const runtimeConfig = useRuntimeConfig();
             mapboxgl.accessToken = runtimeConfig.public.mapboxToken;
 
-            map = new mapboxgl.Map({
+            state.map = new mapboxgl.Map({
                 container: (mapContainer.value as any) as HTMLElement,
                 style: 'mapbox://styles/mapbox/outdoors-v12',
-                center: [0, 0],  // starting position [lng, lat]
-                zoom: 9
+                center: [111.00391063182929,-5.277512107350034],  // starting position [lng, lat]
+                zoom: 3
             });
 
-            map.on('load', () => {
+            state.map.on('load', () => {
                 addMarkers(portsStore.filteredPorts, portMarkers, '#FF0000');
                 addMarkers(shipsStore.filteredShips, shipMarkers);
             });
@@ -70,13 +82,25 @@ export default {
 
             onUnmounted(() => {
                 clearMarkers([...portMarkers, ...shipMarkers]);
-                if (map) {
-                    map.remove();
+                if (state.map) {
+                    state.map.remove();
                 }
             });
         });
 
         return { mapContainer };
+    },
+    methods: {
+        zoomToShip(shipName: string) {
+            const marker = shipMarkersMap[shipName];
+            if (marker && state.map) {
+                const lngLat = marker.getLngLat();
+                state.map.flyTo({
+                    center: [lngLat.lng, lngLat.lat],
+                    zoom: 7
+                });
+            }
+        }
     }
 }
 </script>
