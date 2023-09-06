@@ -5,7 +5,7 @@
   </template>
   
   <script lang="ts">
-  import agroImage from '~/assets/agro.png';
+  import agroImage from '~/assets/agro2.png';
   
   export default {
     data() {
