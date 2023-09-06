@@ -14,12 +14,23 @@ export const useShipsStore = defineStore({
     getters: {
         filteredShips(): ShipFeature[] {
             // Filter the ships based on the filters
-            return this.ships.features;
+            let filtered = this.ships.features;
+
+            if (this.filters.cargo && this.filters.cargo !== 'All') {
+                filtered = filtered.filter(ship => ship.properties['Product'] === this.filters.cargo);
+            }
+
+            if (this.filters.country && this.filters.country !== 'All') {
+                console.log(this.filters.country);
+                filtered = filtered.filter(ship => ship.properties['Origin Port Country'] === this.filters.country);
+            }
+
+            return filtered;
         }
     },
     actions: {
-        setFilters(newFilters: {}) {
-            this.filters = newFilters;
+        setFilter(key: string, value: unknown) {
+            this.filters[key] = value;
         }
     }
 });
