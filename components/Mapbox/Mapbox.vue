@@ -49,8 +49,8 @@ export default {
             map = new mapboxgl.Map({
                 container: (mapContainer.value as any) as HTMLElement,
                 style: 'mapbox://styles/mapbox/outdoors-v12',
-                center: [0, 0],  // starting position [lng, lat]
-                zoom: 9
+                center: [111.00391063182929,-5.277512107350034],  // starting position [lng, lat]
+                zoom: 3
             });
 
             map.on('load', () => {
