@@ -2,6 +2,7 @@
   <main>
     <MapboxComponent class="w-full h-screen" />
   </main>
+  <LeftSidebar />
 </template>
 
 <script lang="ts">

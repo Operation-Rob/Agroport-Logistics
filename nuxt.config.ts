@@ -5,5 +5,16 @@ export default defineNuxtConfig({
     public: {
       mapboxToken: process.env.MAPBOX_TOKEN || ""
     }
-  }
+  },
+
+  css: [
+    '@/assets/css/main.css',
+  ],
+
+  postcss: {
+    plugins: {
+      tailwindcss: {},
+      autoprefixer: {},
+    },
+  },
 })

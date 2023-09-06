@@ -9,3 +9,5 @@
         name: 'LeftSidebar'
     }
 </script>
+
+<style></style>

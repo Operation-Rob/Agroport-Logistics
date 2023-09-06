@@ -28,9 +28,3 @@ setup() {
 }
 }
 </script>
-
-<style>
-.map-container {
-    height: 100vh;
-}
-</style>
