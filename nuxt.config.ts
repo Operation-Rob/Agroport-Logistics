@@ -5,5 +5,9 @@ export default defineNuxtConfig({
     public: {
       mapboxToken: process.env.MAPBOX_TOKEN || ""
     }
-  }
+  },
+  modules: [
+    // ...
+    '@pinia/nuxt',
+  ],
 })
