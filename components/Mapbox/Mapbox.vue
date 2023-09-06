@@ -18,7 +18,7 @@ setup() {
 
     map = new mapboxgl.Map({
         container: mapContainer.value as HTMLElement,
-        style: 'mapbox://styles/mapbox/streets-v11',
+        style: 'mapbox://styles/mapbox/outdoors-v12',
         center: [0, 0],  // starting position [lng, lat]
         zoom: 9
     });
@@ -31,7 +31,6 @@ setup() {
 
 <style>
 .map-container {
-width: 100%;
-height: 400px; /* You can adjust as needed */
+    height: 100vh;
 }
-</style>  
+</style>
