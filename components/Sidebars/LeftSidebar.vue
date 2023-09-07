@@ -11,7 +11,7 @@
           @ship-selected="handleShipSelected"
           :shipName="ship.properties['Vessel Name']"
           :shipType="ship.properties['Vessel Type - Detailed']"
-          :cargo="ship.properties['Product']"
+          :cargo="ship.properties['product']"
           :eta="ship.properties['Calculated Eta']"
           :volume="(ship.properties['Capacity - Gt'] ?? 0).toString()"
         />
