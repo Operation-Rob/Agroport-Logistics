@@ -1,7 +1,7 @@
 <template>
   <div class="flex items-center justify-around bg-black">
     <div
-      class="md:invisible border-none rounded-lg bg-zinc-800 p-1"
+      class="md:invisible cursor-pointer border-none rounded-lg bg-zinc-800 p-1"
       @click="
         () => {
           emit('left');
@@ -17,7 +17,7 @@
     </div>
     <img :src="agroImage" alt="Agro Image" class="w-auto h-7 md:h-12" />
     <div
-      class="md:invisible border-none rounded-lg bg-zinc-800 p-1"
+      class="md:invisible cursor-pointer border-none rounded-lg bg-zinc-800 p-1"
       @click="
         () => {
           emit('right');
