@@ -6,7 +6,11 @@
           leftSidebarOpen = true;
         }
       "
-      @right="() => {}"
+      @right="
+        () => {
+          rightSidebarOpen = true;
+        }
+      "
       class="h-[10%]"
     />
 
@@ -38,7 +42,30 @@
           </div>
         </div>
       </transition>
+
       <RightSidebar class="invisible md:visible" />
+      <transition
+        enter-from-class="opacity-0"
+        leave-to-class="opacity-0"
+        enter-active-class="transition duration-200"
+        leave-active-class="transition duration-200"
+      >
+        <div
+          v-if="rightSidebarOpen"
+          class="flex justify-center items-center fixed top-0 z-50 left-0 w-full h-full bg-stone-200 bg-opacity-10 backdrop-blur-sm transition"
+        >
+          <div
+            v-on-click-outside="
+              () => {
+                rightSidebarOpen = false;
+              }
+            "
+            :class="`bg-white rounded-2xl ${size}`"
+          >
+            <RightSidebar />
+          </div>
+        </div>
+      </transition>
       <MapboxComponent ref="mapboxRef" class="w-full h-screen" />
     </main>
     <Footer class="h-[5%] z-20" />
@@ -53,6 +80,7 @@ import Header from "../components/Header/Header.vue";
 import Footer from "../components/Footer/Footer.vue";
 import { vOnClickOutside } from "@vueuse/components";
 const leftSidebarOpen = ref(false);
+const rightSidebarOpen = ref(false);
 
 // export default {
 //   components: {

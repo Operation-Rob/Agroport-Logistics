@@ -1,6 +1,6 @@
 <template>
   <div
-    class="fixed top-0 right-0 invisible md:visible w-1/5 h-screen bg-black pl-2 py-2 pr-1 z-10 text-white"
+    class="fixed top-0 right-0 w-1/5 h-screen bg-black pl-2 py-2 pr-1 z-10 text-white"
   >
     <div class="outline rounded-md bg-gray-950 p-2 pt-1">
       <h1 class="font-bold underline pb-2 pl-2 text-lg">Filters</h1>
