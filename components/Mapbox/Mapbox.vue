@@ -16,6 +16,8 @@ const state = reactive({
 
 let shipMarkersMap: Record<string, mapboxgl.Marker> = {};
 
+import { storeToRefs } from 'pinia'
+
 export default {
     name: 'MapboxComponent',
     setup() {
@@ -28,6 +30,7 @@ export default {
         const shipsStore = useShipsStore();
 
         const addMarkers = (items: any[], markersArray: mapboxgl.Marker[], color?: string) => {
+            
             for (const item of items) {
                 const [longitude, latitude] = item.geometry.coordinates;
                 const options: mapboxgl.MarkerOptions = { rotationAlignment: 'horizon' };
@@ -70,12 +73,12 @@ export default {
                 addMarkers(shipsStore.filteredShips, shipMarkers);
             });
 
-            watch(portsStore.filters, () => {
+            watch(() => portsStore.changed_signal, () => {   
                 clearMarkers(portMarkers);
                 addMarkers(shipsStore.filteredShips, portMarkers, '#FF0000');
             });
 
-            watch(shipsStore.filters, () => {
+            watch(() => shipsStore.changed_signal, () => {
                 clearMarkers(shipMarkers);
                 addMarkers(shipsStore.filteredShips, shipMarkers);
             });

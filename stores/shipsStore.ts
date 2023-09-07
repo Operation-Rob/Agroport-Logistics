@@ -5,21 +5,47 @@ import portsGeoJson from '@/data/ships.json';
 // Explicitly tell TypeScript the type of geojsonData
 let typedGeojsonData = (portsGeoJson as any) as ShipFeatureCollection;
 
+
+export interface shipFilters {
+    product: string | null;
+    origin: string | null;
+}
+
 export const useShipsStore = defineStore({
     id: 'ships',
-    state: (): { ships: ShipFeatureCollection, filters: Record<string, unknown> } => ({
+    state: (): { ships: ShipFeatureCollection, filters: shipFilters, changed_signal: boolean } => ({
         ships: typedGeojsonData,
-        filters: {}
+        filters: {
+            product : null,
+            origin: null
+        },
+        changed_signal: false,
     }),
     getters: {
         filteredShips(): ShipFeature[] {
             // Filter the ships based on the filters
-            return this.ships.features;
+            let filteredShips = this.ships.features;
+
+            if (this.filters.product) {
+                filteredShips = filteredShips.filter((ship: ShipFeature) => ship.properties['Product'] === this.filters.product);
+            }
+
+            if (this.filters.origin) {
+                filteredShips = filteredShips.filter((ship: ShipFeature) => ship.properties['Origin Port Country'] === this.filters.origin);
+            }
+
+            return filteredShips;
         }
     },
     actions: {
-        setFilters(newFilters: {}) {
-            this.filters = newFilters;
+        setFilters(key: keyof shipFilters, value: string | null) {
+            // Check for a valid key to avoid runtime errors
+            if (key in this.filters) {
+                this.filters[key] = value;
+                this.changed_signal = !this.changed_signal;
+            } else {
+                console.error(`Invalid key: ${key}`);
+            }
         }
     }
 });

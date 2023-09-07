@@ -4,6 +4,7 @@
     <Header class="h-[10%]" />
     <main class="h-[90%] overflow-y-hidden">
       <LeftSidebar @focus-on-ship="focusOnShip" />
+      <RightSidebar />
       <MapboxComponent ref="mapboxRef" class="w-full h-screen" />
     </main>
     <Footer class="h-[5%] z-20" />
