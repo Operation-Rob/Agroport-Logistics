@@ -67,6 +67,7 @@ interface ShipProperties {
   'Voyage State': string | null;
   'product': string | null;
   'price': number | string;
+  'P(Fertiliser | Origin, Destination=Australia)': number | null;
 }  
 
 interface Geometry {

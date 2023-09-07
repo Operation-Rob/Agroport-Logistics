@@ -25,6 +25,12 @@ const selectedVessels: ShipFeature[] = [];
 for (const originPort in portVesselMap) {
     const vessels = portVesselMap[originPort];
     const randomVessel = vessels[Math.floor(Math.random() * vessels.length)];
+
+    if ((randomVessel.properties['Vessel Type - Detailed'] != 'Oil/Chemical Tanker') &&
+        (randomVessel.properties['Vessel Type - Detailed'] != 'Bulk Carrier')) {
+        randomVessel.properties['P(Fertiliser | Origin, Destination=Australia)'] = 0;
+    }
+
     selectedVessels.push(randomVessel);
 }
 
@@ -48,7 +54,10 @@ selectedVessels.forEach((ship: ShipFeature) => {
 });
 
 
-typedGeojsonData.features = selectedVessels.slice(0, 100);
+
+
+
+typedGeojsonData.features = selectedVessels.slice(0, 400);
 
 export interface shipFilters {
     product: string | null;

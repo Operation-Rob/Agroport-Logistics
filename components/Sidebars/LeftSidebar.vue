@@ -14,6 +14,9 @@
           :cargo="ship.properties['product']"
           :eta="ship.properties['Calculated Eta']?.toString()"
           :volume="(ship.properties['Capacity - Gt'] ?? 0).toString()"
+          :origin="ship.properties['Origin Port Country']?.toString()"
+          :probability="ship.properties['P(Fertiliser | Origin, Destination=Australia)']?.toString()"
+          :imo="ship.properties.Imo?.toString()"
         />
       </ul>
     </div>
@@ -32,7 +35,23 @@ export default {
   },
   setup(props: any, { emit }) {
     const shipsStore = useShipsStore();
-    const filteredShips = computed(() => shipsStore.filteredShips);
+    const filteredShips = computed(() => {
+        return shipsStore.filteredShips.sort((a, b) => {
+        // Convert to number since the value seems to be stored as a string
+
+        const aValue = parseFloat(a.properties['P(Fertiliser | Origin, Destination=Australia)'] || "0");
+        const bValue = parseFloat(b.properties['P(Fertiliser | Origin, Destination=Australia)'] || "0");
+
+        // Check if parsed values are NaN and provide default value
+        const validAValue = isNaN(aValue) ? 0 : aValue;
+        const validBValue = isNaN(bValue) ? 0 : bValue;
+
+        // For descending order, swap 'aValue' and 'bValue'
+        return - aValue + bValue; // Ascending order
+        // return bValue - aValue; // Uncomment for descending order
+      });
+    });
+
     const shipCardsContainer = ref(null);
     const handleShipSelected = (shipName: string) => {
       emit("focus-on-ship", shipName);
