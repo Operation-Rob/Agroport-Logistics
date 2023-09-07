@@ -15,7 +15,11 @@
         size="32"
       ></svg-icon>
     </div>
-    <img :src="agroImage" alt="Agro Image" class="w-auto h-7 md:h-12" />
+    <img
+      :src="agroImage"
+      alt="Agro Image"
+      class="w-60 h-10 md:w-auto md:h-12"
+    />
     <div
       class="md:invisible cursor-pointer border-none rounded-lg bg-zinc-800 p-1"
       @click="
