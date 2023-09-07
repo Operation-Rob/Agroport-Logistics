@@ -27,6 +27,7 @@
             <option>Russia</option>
             <option>Qatar</option>
             <option>Saudi Arabia</option>
+            <option>United Arab Emirates</option>
             <option>Bahrain</option>
             <option>Trinidad & Tobago</option>
             <option>Indonesia</option>
