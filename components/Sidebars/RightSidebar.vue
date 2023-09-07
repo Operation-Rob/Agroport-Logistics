@@ -78,6 +78,21 @@
             <option>Canada</option>
           </select>
         </div>
+        <div class="text-sm" v-if="destCountry=='All'||destCountry=='Australia'">
+          Dest. Port:
+          <select
+            v-model="destPort"
+            class="bg-gray-200 text-black px-1 text-sm rounded absolute right-2 border-2 border-gray-600 w-36"
+          >
+            <option>All</option>
+            <option>Fremantle</option>
+            <option>Kwinana</option>
+            <option>Bunbury</option>
+            <option>Albany</option>
+            <option>Esperance</option>
+            <option>Geraldton</option>
+          </select>
+        </div>
       </div>
     </div>
     <button
@@ -156,6 +171,7 @@ export default {
         const product = ref('All');
         const originCountry = ref('All');
         const destCountry = ref('All');
+        const destPort = ref('All');
         const shipsStore = useShipsStore();
         
         console.log(shipsStore);
@@ -175,10 +191,15 @@ export default {
       shipsStore.setFilters("dest", countryCode);
     });
 
+    watch(destPort, (newDestPortValue) => {
+      shipsStore.setFilters("destPort", newDestPortValue==='All'?null:newDestPortValue.toUpperCase());
+    });
+
     return {
       product,
       originCountry,
       destCountry,
+      destPort
     };
   },
 };

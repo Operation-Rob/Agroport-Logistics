@@ -54,6 +54,7 @@ export interface shipFilters {
     product: string | null;
     origin: string | null;
     dest: string | null;
+    destPort: string | null;
 }
 
 export const useShipsStore = defineStore({
@@ -63,7 +64,8 @@ export const useShipsStore = defineStore({
         filters: {
             product: null,
             origin: null,
-            dest: null
+            dest: null,
+            destPort: null
         },
         changed_signal: false,
     }),
@@ -82,6 +84,10 @@ export const useShipsStore = defineStore({
 
             if (state.filters.dest) {
                 filteredShips = filteredShips.filter((ship: ShipFeature) => ship.properties['Destination Port Country'] === state.filters.dest);
+            }
+
+            if (state.filters.destPort) {
+                filteredShips = filteredShips.filter((ship: ShipFeature) => ship.properties['Destination Port'] === state.filters.dest);
             }
 
             return filteredShips;
