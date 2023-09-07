@@ -1,6 +1,6 @@
 <template>
   <div
-    class="fixed top-0 right-0 h-screen bg-black pl-2 py-2 pr-1 z-10 text-white"
+    class="fixed top-0 right-0 h-screen bg-black pl-2 py-2 pr-1 z-10 text-white space-y-3"
   >
     <div class="outline rounded-md bg-gray-950 p-2 pt-1">
       <h1 class="font-bold underline pb-2 pl-2 text-lg">Filters</h1>
@@ -95,6 +95,10 @@
         </div>
       </div>
     </div>
+    <div class="outline rounded-md bg-gray-950 p-2 pt-1">
+      <h1 class="font-bold underline pb-2 pl-2 text-base">Projected Incoming Fertiliser</h1>
+      <svg ref="svgRef" width="300" height="150"></svg>
+    </div>
     <button
       class="bg-al-green hover:bg-[#6ff283] active:bg-[#4fa156] px-2 rounded text-black font-bold absolute right-3 bottom-[40px]"
     >
@@ -104,8 +108,9 @@
 </template>
 
 <script lang="ts">
-import { ref, watch } from "vue";
+import { ref, watch, onMounted } from "vue";
 import { useShipsStore } from "@/stores/shipsStore";
+import * as d3 from "d3";
 
 type CountryCodeMapping = {
   [key: string]: string | null;
@@ -173,8 +178,6 @@ export default {
         const destCountry = ref('All');
         const destPort = ref('All');
         const shipsStore = useShipsStore();
-        
-        console.log(shipsStore);
 
     watch(product, (newCargoValue) => {
       const mappedProduct = productMapping[newCargoValue];
@@ -195,11 +198,87 @@ export default {
       shipsStore.setFilters("destPort", newDestPortValue==='All'?null:newDestPortValue.toUpperCase());
     });
 
+    // d3 stuff
+    const svgRef = ref(null);
+
+    onMounted(() => {
+      drawBarGraph();
+    });
+
+    function drawBarGraph() {
+    const data = [4, 8, 15, 16, 23, 42, 54, 67];
+
+    const svg = d3.select(svgRef.value);
+    const width = 250;
+    const height = 150;
+    const barWidth = width / data.length;
+
+    const y = d3.scaleLinear()
+        .domain([0, d3.max(data)])
+        .range([height-2, 2]);
+
+    const bar = svg.selectAll("g")
+        .data(data)
+        .enter().append("g")
+        .attr("transform", (d: any, i: any) => `translate(${i * barWidth},0)`);
+
+    bar.append("rect")
+        .attr("y", d => y(d))
+        .attr("width", barWidth - 1)
+        .attr("height", d => height - y(d)-2)
+        .attr("fill", "#64DD77");
+
+    const x = d3.scaleBand()
+        .domain(data.map((_, i) => i.toString()))
+        .range([0, width])
+        .padding(0.1);
+
+    const xAxis = d3.axisBottom(x).ticks(5);
+    const yAxis = d3.axisLeft(y).tickFormat((d:any) => {return d;}).ticks(5);
+
+    const yAxisG = svg.append("g")
+        .attr("class", "y-axis")
+        .style("stroke-width", 4)
+        .call(yAxis);
+
+    yAxisG.selectAll("text")
+        .style("fill", "white");
+
+    yAxisG.selectAll("line, path")
+        .style("stroke", "white")
+        .style("stroke-width", 4);
+
+    const xAxisG = svg.append("g")
+        .attr("class", "x-axis")
+        .attr("transform", `translate(0,${height})`)
+        .style("stroke-width", 6)
+        .call(xAxis);
+
+    xAxisG.selectAll("text")
+        .style("fill", "white");
+
+    xAxisG.selectAll("line, path")
+        .style("stroke", "white")
+        .style("stroke-width", 6);
+
+    svg.append("text")
+        .attr("transform", "rotate(-90)")
+        .attr("y", 0 - 60)
+        .attr("x", 0 - (height / 2))
+        .attr("dy", "1em")
+        .style("fill", "white")
+        .style("text-anchor", "middle")
+        .text("Volume");
+    }
+
+
+
     return {
       product,
       originCountry,
       destCountry,
-      destPort
+      destPort,
+      svgRef
     };
   },
 };
