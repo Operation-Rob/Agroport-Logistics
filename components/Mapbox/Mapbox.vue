@@ -28,11 +28,9 @@ export default {
 
         const portsStore = usePortsStore();
         const shipsStore = useShipsStore();
-        
-        const portsRef = storeToRefs(portsStore);
-        const shipsRef = storeToRefs(shipsStore);
 
         const addMarkers = (items: any[], markersArray: mapboxgl.Marker[], color?: string) => {
+            
             for (const item of items) {
                 const [longitude, latitude] = item.geometry.coordinates;
                 const options: mapboxgl.MarkerOptions = { rotationAlignment: 'horizon' };
@@ -75,12 +73,12 @@ export default {
                 addMarkers(shipsStore.filteredShips, shipMarkers);
             });
 
-            watch(portsRef.filters, () => {   
+            watch(() => portsStore.changed_signal, () => {   
                 clearMarkers(portMarkers);
                 addMarkers(shipsStore.filteredShips, portMarkers, '#FF0000');
             });
 
-            watch(shipsRef.filters, () => {
+            watch(() => shipsStore.changed_signal, () => {
                 clearMarkers(shipMarkers);
                 addMarkers(shipsStore.filteredShips, shipMarkers);
             });

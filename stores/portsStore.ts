@@ -11,11 +11,12 @@ export interface portFilters {
 
 export const usePortsStore = defineStore({
     id: 'ports',
-    state: (): { ports: PortFeatureCollection, filters: portFilters } => ({
+    state: (): { ports: PortFeatureCollection, filters: portFilters, changed_signal: boolean } => ({
         ports: typedGeojsonData,
         filters: {
             product : null,
-        }
+        },
+        changed_signal: false,
     }),
     getters: {
         filteredPorts(): PortFeature[] {
@@ -34,6 +35,7 @@ export const usePortsStore = defineStore({
             // Check for a valid key to avoid runtime errors
             if (key in this.filters) {
                 this.filters[key] = value;
+                this.changed_signal = !this.changed_signal;
             } else {
                 console.error(`Invalid key: ${key}`);
             }

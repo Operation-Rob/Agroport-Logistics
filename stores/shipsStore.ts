@@ -13,12 +13,13 @@ export interface shipFilters {
 
 export const useShipsStore = defineStore({
     id: 'ships',
-    state: (): { ships: ShipFeatureCollection, filters: shipFilters } => ({
+    state: (): { ships: ShipFeatureCollection, filters: shipFilters, changed_signal: boolean } => ({
         ships: typedGeojsonData,
         filters: {
             product : null,
             origin: null
-        }
+        },
+        changed_signal: false,
     }),
     getters: {
         filteredShips(): ShipFeature[] {
@@ -41,6 +42,7 @@ export const useShipsStore = defineStore({
             // Check for a valid key to avoid runtime errors
             if (key in this.filters) {
                 this.filters[key] = value;
+                this.changed_signal = !this.changed_signal;
             } else {
                 console.error(`Invalid key: ${key}`);
             }
