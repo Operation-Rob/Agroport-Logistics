@@ -1,25 +1,35 @@
 <template>
   <div class="flex items-center justify-center bg-black">
     <div
-      class="h-5 w-5 bg-white cursor-pointer"
+      class="md:invisible border-none rounded-lg bg-zinc-800 p-1"
       @click="
         () => {
           emit('left');
         }
       "
     >
-      L
+      <svg-icon
+        type="mdi"
+        :path="mdiFerry"
+        class="text-white"
+        size="32"
+      ></svg-icon>
     </div>
     <img :src="agroImage" alt="Agro Image" class="w-auto h-7 md:h-12" />
     <div
-      class="h-5 w-5 bg-white cursor-pointer"
+      class="md:invisible border-none rounded-lg bg-zinc-800 p-1"
       @click="
         () => {
           emit('right');
         }
       "
     >
-      R
+      <svg-icon
+        type="mdi"
+        :path="mdiTune"
+        class="text-white"
+        size="32"
+      ></svg-icon>
     </div>
   </div>
 </template>
@@ -27,4 +37,6 @@
 <script setup lang="ts">
 import agroImage from "~/assets/agro2.png";
 const emit = defineEmits(["left", "right"]);
+import SvgIcon from "@jamescoyle/vue-icon";
+import { mdiFerry, mdiTune } from "@mdi/js";
 </script>
