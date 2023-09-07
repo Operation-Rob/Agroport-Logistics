@@ -9,6 +9,7 @@ let typedGeojsonData = (portsGeoJson as any) as ShipFeatureCollection;
 export interface shipFilters {
     product: string | null;
     origin: string | null;
+    dest: string | null;
 }
 
 export const useShipsStore = defineStore({
@@ -17,7 +18,8 @@ export const useShipsStore = defineStore({
         ships: typedGeojsonData,
         filters: {
             product : null,
-            origin: null
+            origin: null,
+            dest: null
         },
         changed_signal: false,
     }),
@@ -32,6 +34,10 @@ export const useShipsStore = defineStore({
 
             if (this.filters.origin) {
                 filteredShips = filteredShips.filter((ship: ShipFeature) => ship.properties['Origin Port Country'] === this.filters.origin);
+            }
+
+            if (this.filters.dest) {
+                filteredShips = filteredShips.filter((ship: ShipFeature) => ship.properties['Destination Port Country'] === this.filters.dest);
             }
 
             return filteredShips;
