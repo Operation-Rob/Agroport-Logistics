@@ -1,6 +1,6 @@
 <template>
   <div
-    class="fixed top-0 right-0 h-screen bg-black pl-2 py-2 pr-1 z-10 text-white"
+    class="fixed top-0 right-0 h-screen bg-black pl-2 py-2 pr-1 z-10 text-white space-y-3"
   >
     <div class="outline rounded-md bg-gray-950 p-2 pt-1">
       <h1 class="font-bold underline pb-2 pl-2 text-lg">Filters</h1>
@@ -78,18 +78,50 @@
             <option>Canada</option>
           </select>
         </div>
+        <div class="text-sm" v-if="destCountry=='All'||destCountry=='Australia'">
+          Dest. Port:
+          <select
+            v-model="destPort"
+            class="bg-gray-200 text-black px-1 text-sm rounded absolute right-2 border-2 border-gray-600 w-36"
+          >
+            <option>All</option>
+            <option>Fremantle</option>
+            <option>Kwinana</option>
+            <option>Bunbury</option>
+            <option>Albany</option>
+            <option>Esperance</option>
+            <option>Geraldton</option>
+          </select>
+        </div>
+        <div class="text-sm">
+          Vessel Type:
+          <select
+            v-model="vesselType"
+            class="bg-gray-200 text-black px-1 text-sm rounded absolute right-2 border-2 border-gray-600 w-36"
+          >
+            <option>All</option>
+            <option>Bulk Carrier</option>
+            <option>Oil/Chemical Tanker</option>
+          </select>
+        </div>
       </div>
     </div>
+    <div class="outline rounded-md bg-gray-950 p-2 pt-1">
+      <h1 class="font-bold underline pb-2 pl-2 text-base">Projected Incoming Fertiliser</h1>
+      <img src="@/assets/graph.png"/>
+    </div>
+    <div class="pr-4 w-full absolute bottom-9">
     <button
-      class="bg-al-green hover:bg-[#6ff283] active:bg-[#4fa156] px-2 rounded text-black font-bold absolute right-3 bottom-[40px]"
+      class="bg-al-green hover:bg-[#6ff283] active:bg-[#4fa156] pl-2 rounded w-full text-black font-bold"
     >
       Export
     </button>
+    </div>
   </div>
 </template>
 
 <script lang="ts">
-import { ref, watch } from "vue";
+import { ref, watch, onMounted } from "vue";
 import { useShipsStore } from "@/stores/shipsStore";
 
 type CountryCodeMapping = {
@@ -156,18 +188,21 @@ export default {
         const product = ref('All');
         const originCountry = ref('All');
         const destCountry = ref('All');
+        const destPort = ref('All');
+        const vesselType = ref('All');
         const shipsStore = useShipsStore();
-        
-        console.log(shipsStore);
 
-        watch(product, (newCargoValue) => {
-            const mappedProduct = productMapping[newCargoValue];
-            shipsStore.setFilters('product', mappedProduct);
-        });
+        console.log(shipsStore);
 
     watch(product, (newCargoValue) => {
       const mappedProduct = productMapping[newCargoValue];
-      shipsStore.setFilters("product", mappedProduct);
+      if (mappedProduct === "UAN") {
+        shipsStore.setFilters("vesselType", "Oil/Chemical Tanker");
+      }
+      if (mappedProduct === "Urea" || mappedProduct === "MOP") {
+        shipsStore.setFilters("vesselType", "Bulk Carrier");
+      }
+      //shipsStore.setFilters("product", mappedProduct);
     });
 
     watch(originCountry, (newOriginCountryValue) => {
@@ -180,10 +215,20 @@ export default {
       shipsStore.setFilters("dest", countryCode);
     });
 
+    watch(destPort, (newDestPortValue) => {
+      shipsStore.setFilters("destPort", newDestPortValue==='All'?null:newDestPortValue.toUpperCase());
+    });
+
+    watch(vesselType, (newVesselTypeValue) => {
+      shipsStore.setFilters("vesselType", newVesselTypeValue==='All'?null:newVesselTypeValue);
+    });
+
     return {
       product,
       originCountry,
       destCountry,
+      destPort,
+      vesselType
     };
   },
 };
