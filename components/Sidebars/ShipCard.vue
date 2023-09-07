@@ -24,11 +24,13 @@ export default {
         },
         eta: {
             type: String,
-            required: true
+            required: true,
+            default: 'N/A',
         },
         cargo: {
             type: String,
-            required: true
+            required: true,
+            default: 'N/A',
         },
         volume: {
             type: String,
