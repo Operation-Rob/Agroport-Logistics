@@ -93,11 +93,22 @@
             <option>Geraldton</option>
           </select>
         </div>
+        <div class="text-sm">
+          Vessel Type:
+          <select
+            v-model="vesselType"
+            class="bg-gray-200 text-black px-1 text-sm rounded absolute right-2 border-2 border-gray-600 w-36"
+          >
+            <option>All</option>
+            <option>Bulk Carrier</option>
+            <option>Oil/Chemical Tanker</option>
+          </select>
+        </div>
       </div>
     </div>
     <div class="outline rounded-md bg-gray-950 p-2 pt-1">
       <h1 class="font-bold underline pb-2 pl-2 text-base">Projected Incoming Fertiliser</h1>
-      <svg ref="svgRef" width="300" height="150"></svg>
+      <img src="@/assets/graph.png"/>
     </div>
     <button
       class="bg-al-green hover:bg-[#6ff283] active:bg-[#4fa156] px-2 rounded text-black font-bold absolute right-3 bottom-[40px]"
@@ -110,7 +121,6 @@
 <script lang="ts">
 import { ref, watch, onMounted } from "vue";
 import { useShipsStore } from "@/stores/shipsStore";
-import * as d3 from "d3";
 
 type CountryCodeMapping = {
   [key: string]: string | null;
@@ -177,11 +187,20 @@ export default {
         const originCountry = ref('All');
         const destCountry = ref('All');
         const destPort = ref('All');
+        const vesselType = ref('All');
         const shipsStore = useShipsStore();
+
+        console.log(shipsStore);
 
     watch(product, (newCargoValue) => {
       const mappedProduct = productMapping[newCargoValue];
-      shipsStore.setFilters("product", mappedProduct);
+      if (mappedProduct === "UAN") {
+        shipsStore.setFilters("vesselType", "Oil/Chemical Tanker");
+      }
+      if (mappedProduct === "Urea" || mappedProduct === "MOP") {
+        shipsStore.setFilters("vesselType", "Bulk Carrier");
+      }
+      //shipsStore.setFilters("product", mappedProduct);
     });
 
     watch(originCountry, (newOriginCountryValue) => {
@@ -198,87 +217,16 @@ export default {
       shipsStore.setFilters("destPort", newDestPortValue==='All'?null:newDestPortValue.toUpperCase());
     });
 
-    // d3 stuff
-    const svgRef = ref(null);
-
-    onMounted(() => {
-      drawBarGraph();
+    watch(vesselType, (newVesselTypeValue) => {
+      shipsStore.setFilters("vesselType", newVesselTypeValue==='All'?null:newVesselTypeValue);
     });
-
-    function drawBarGraph() {
-    const data = [4, 8, 15, 16, 23, 42, 54, 67];
-
-    const svg = d3.select(svgRef.value);
-    const width = 250;
-    const height = 150;
-    const barWidth = width / data.length;
-
-    const y = d3.scaleLinear()
-        .domain([0, d3.max(data)])
-        .range([height-2, 2]);
-
-    const bar = svg.selectAll("g")
-        .data(data)
-        .enter().append("g")
-        .attr("transform", (d: any, i: any) => `translate(${i * barWidth},0)`);
-
-    bar.append("rect")
-        .attr("y", d => y(d))
-        .attr("width", barWidth - 1)
-        .attr("height", d => height - y(d)-2)
-        .attr("fill", "#64DD77");
-
-    const x = d3.scaleBand()
-        .domain(data.map((_, i) => i.toString()))
-        .range([0, width])
-        .padding(0.1);
-
-    const xAxis = d3.axisBottom(x).ticks(5);
-    const yAxis = d3.axisLeft(y).tickFormat((d:any) => {return d;}).ticks(5);
-
-    const yAxisG = svg.append("g")
-        .attr("class", "y-axis")
-        .style("stroke-width", 4)
-        .call(yAxis);
-
-    yAxisG.selectAll("text")
-        .style("fill", "white");
-
-    yAxisG.selectAll("line, path")
-        .style("stroke", "white")
-        .style("stroke-width", 4);
-
-    const xAxisG = svg.append("g")
-        .attr("class", "x-axis")
-        .attr("transform", `translate(0,${height})`)
-        .style("stroke-width", 6)
-        .call(xAxis);
-
-    xAxisG.selectAll("text")
-        .style("fill", "white");
-
-    xAxisG.selectAll("line, path")
-        .style("stroke", "white")
-        .style("stroke-width", 6);
-
-    svg.append("text")
-        .attr("transform", "rotate(-90)")
-        .attr("y", 0 - 60)
-        .attr("x", 0 - (height / 2))
-        .attr("dy", "1em")
-        .style("fill", "white")
-        .style("text-anchor", "middle")
-        .text("Volume");
-    }
-
-
 
     return {
       product,
       originCountry,
       destCountry,
       destPort,
-      svgRef
+      vesselType
     };
   },
 };
