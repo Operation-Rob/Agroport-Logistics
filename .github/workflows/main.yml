@@ -6,10 +6,8 @@ on:
       - main
 
 jobs:
-  build_and_deploy_job:
-    if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed')
+  build:
     runs-on: ubuntu-latest
-    name: Build and Deploy Job
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
@@ -18,7 +16,7 @@ jobs:
       uses: azure/login@v1
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
-      
+
     - name: Set up Node.js
       uses: actions/setup-node@v1
       with:
@@ -30,13 +28,13 @@ jobs:
     - name: Build Nuxt app
       run: npm run build
 
-    - name: 'Build And Deploy'
-      id: builddeploy
-      uses: azure/static-web-apps-deploy@v1
+    - name: Deploy to Azure
+      uses: azure/webapps-deploy@v2
       with:
-        azure_static_web_apps_api_token: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
-        repo_token: ${{ secrets.GITHUB_TOKEN }} # Provided by GitHub, you don't need to set up this secret manually.
-        action: 'upload'
+        app-name: agroport-logistics
+        slot-name: production
+        publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+        package: .
         app_location: '/'
         api_location: '.output/server'
         output_location: '.output/public'
