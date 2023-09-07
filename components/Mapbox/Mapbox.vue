@@ -8,6 +8,7 @@ import mapboxgl from 'mapbox-gl';
 import { usePortsStore } from '@/stores/portsStore';
 import { useShipsStore } from '@/stores/shipsStore';
 import 'mapbox-gl/dist/mapbox-gl.css';
+import { storeToRefs } from 'pinia'
 
 export default {
     name: 'MapboxComponent',
@@ -20,6 +21,8 @@ export default {
 
         const portsStore = usePortsStore();
         const shipsStore = useShipsStore();
+        const portsRef = storeToRefs(portsStore)
+        const shipsRef = storeToRefs(shipsStore)
 
         const addMarkers = (items: any[], markersArray: mapboxgl.Marker[], color?: string) => {
             for (const item of items) {
@@ -58,12 +61,12 @@ export default {
                 addMarkers(shipsStore.filteredShips, shipMarkers);
             });
 
-            watch(portsStore.filters, () => {
+            watch(portsRef.filters, () => {   
                 clearMarkers(portMarkers);
                 addMarkers(shipsStore.filteredShips, portMarkers, '#FF0000');
             });
 
-            watch(shipsStore.filters, () => {
+            watch(shipsRef.filters, () => {
                 clearMarkers(shipMarkers);
                 addMarkers(shipsStore.filteredShips, shipMarkers);
             });

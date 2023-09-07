@@ -1,7 +1,7 @@
 // tests/unit/ports.spec.ts
 import { createPinia, Pinia } from 'pinia';
 import portsGeoJson from '@/data/ports.json';
-import { usePortsStore } from '@/stores/portsStore'; // Adjust the import based on your actual file structure
+import { usePortsStore, portFilters } from '@/stores/portsStore'; // Adjust the import based on your actual file structure
 import { PortFeatureCollection } from '@/types/GeoJSONTypes';
 
 // Mocking the GeoJSON data if needed
@@ -22,9 +22,8 @@ describe('Ports Store', () => {
     });
 
     it('sets filters correctly', () => {
-        const newFilters: Record<string, unknown> = {
-            flag: 'USA',
-            type: 'Cargo',
+        const newFilters: portFilters = {
+            product: 'Urea'
         };
 
         store.setFilters(newFilters);
