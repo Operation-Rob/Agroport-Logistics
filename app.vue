@@ -42,8 +42,7 @@
           </div>
         </div>
       </transition>
-
-      <RightSidebar class="invisible md:visible" />
+      <RightSidebar class="invisible md:visible w-1/5" />
       <transition
         enter-from-class="opacity-0"
         leave-to-class="opacity-0"
@@ -62,7 +61,7 @@
             "
             :class="`bg-white rounded-2xl ${size}`"
           >
-            <RightSidebar />
+            <RightSidebar class="w-2/3" />
           </div>
         </div>
       </transition>
