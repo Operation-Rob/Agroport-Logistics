@@ -12,7 +12,7 @@
           :shipName="ship.properties['Vessel Name']"
           :shipType="ship.properties['Vessel Type - Detailed']"
           :cargo="ship.properties['product']"
-          :eta="ship.properties['Calculated Eta']"
+          :eta="ship.properties['Calculated Eta']?.toString()"
           :volume="(ship.properties['Capacity - Gt'] ?? 0).toString()"
         />
       </ul>
@@ -30,7 +30,7 @@ export default {
   components: {
     ShipCard,
   },
-  setup(props, { emit }) {
+  setup(props: any, { emit }) {
     const shipsStore = useShipsStore();
     const filteredShips = computed(() => shipsStore.filteredShips);
     const shipCardsContainer = ref(null);

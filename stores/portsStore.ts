@@ -4,28 +4,6 @@ import portsGeoJson from '@/data/ports.json';
 
 // Explicitly tell TypeScript the type of geojsonData
 let typedGeojsonData = (portsGeoJson as any) as PortFeatureCollection;
-
-// Create a map where the key is the "Origin Port" and the value is an array of vessels from that port
-const portVesselMap: { [originPort: string]: ShipFeature[] } = {};
-
-typedGeojsonData.features.forEach(feature => {
-    const originPort = feature.properties['Origin Port'];
-    if (!portVesselMap[originPort]) {
-        portVesselMap[originPort] = [];
-    }
-    portVesselMap[originPort].push(feature);
-});
-
-// Select one vessel from each port
-const selectedVessels: ShipFeature[] = [];
-
-for (const originPort in portVesselMap) {
-    const vessels = portVesselMap[originPort];
-    const randomVessel = vessels[Math.floor(Math.random() * vessels.length)];
-    selectedVessels.push(randomVessel);
-}
-
-
 export interface portFilters {
     product: string | null;
 }
