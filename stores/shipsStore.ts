@@ -5,7 +5,6 @@ import portsGeoJson from '@/data/ships.json';
 // Explicitly tell TypeScript the type of geojsonData
 let typedGeojsonData = (portsGeoJson as any) as ShipFeatureCollection;
 
-
 export interface shipFilters {
     product: string | null;
     origin: string | null;
@@ -29,7 +28,7 @@ export const useShipsStore = defineStore({
             let filteredShips = this.ships.features;
 
             if (this.filters.product) {
-                filteredShips = filteredShips.filter((ship: ShipFeature) => ship.properties['Product'] === this.filters.product);
+                filteredShips = filteredShips.filter((ship: ShipFeature) => ship.properties['product'] === this.filters.product);
             }
 
             if (this.filters.origin) {

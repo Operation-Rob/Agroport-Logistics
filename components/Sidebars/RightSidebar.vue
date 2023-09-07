@@ -151,12 +151,19 @@ const productMapping: ProductMapping = {
 };
 
 export default {
-  name: "RightSidebar",
-  setup() {
-    const product = ref("All");
-    const originCountry = ref("All");
-    const destCountry = ref("All");
-    const shipsStore = useShipsStore();
+    name: 'RightSidebar',
+    setup() {
+        const product = ref('All');
+        const originCountry = ref('All');
+        const destCountry = ref('All');
+        const shipsStore = useShipsStore();
+        
+        console.log(shipsStore);
+
+        watch(product, (newCargoValue) => {
+            const mappedProduct = productMapping[newCargoValue];
+            shipsStore.setFilters('product', mappedProduct);
+        });
 
     watch(product, (newCargoValue) => {
       const mappedProduct = productMapping[newCargoValue];
