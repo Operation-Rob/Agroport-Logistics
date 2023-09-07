@@ -16,7 +16,7 @@
 
     <main class="h-[90%] overflow-y-hidden">
       <LeftSidebar
-        class="invisible md:visible transition"
+        class="invisible md:visible transition w-1/5"
         @focus-on-ship="focusOnShip"
       />
 
@@ -38,7 +38,7 @@
             "
             :class="`bg-white rounded-2xl ${size}`"
           >
-            <LeftSidebar @focus-on-ship="focusOnShip" />
+            <LeftSidebar class="w-2/3" @focus-on-ship="focusOnShip" />
           </div>
         </div>
       </transition>
