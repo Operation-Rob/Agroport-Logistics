@@ -1,4 +1,5 @@
 <template>
+  <title>Agroport Logistics</title>
   <div class="h-screen flex flex-col overflow-hidden">
     <Header
       @left="
@@ -17,6 +18,7 @@
     <main class="h-[90%] overflow-y-hidden">
       <LeftSidebar
         class="invisible md:visible transition w-1/5"
+        ref="leftSidebarRef"
         @focus-on-ship="focusOnShip"
       />
 
@@ -68,7 +70,7 @@
           </div>
         </div>
       </transition>
-      <MapboxComponent ref="mapboxRef" class="w-full h-screen" />
+      <MapboxComponent ref="mapboxRef" class="w-full h-screen" @ship-marker-clicked="handleMarkerClick" />
     </main>
     <Footer class="h-[5%] z-20" />
   </div>
@@ -85,9 +87,13 @@ const leftSidebarOpen = ref(false);
 const rightSidebarOpen = ref(false);
 
 const mapboxRef = ref(null);
+const leftSidebarRef = ref(null);
 
 const focusOnShip = (shipname) => {
   mapboxRef.value.zoomToShip(shipname);
   leftSidebarOpen.value = false;
+};
+const handleMarkerClick = (shipName) => {
+  leftSidebarRef.value.scrollToShipCard(shipName);
 };
 </script>

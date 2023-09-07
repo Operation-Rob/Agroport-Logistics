@@ -1,5 +1,5 @@
 <template>
-  <li class="outline cursor-pointer rounded-md bg-gray-950">
+  <li :shipName="shipName" class="outline cursor-pointer rounded-md bg-gray-950">
     <div class="p-2 pt-1" @click="cardClicked">
       <div>{{ shipName }}</div>
       <div class="italic text-sm">{{ shipType }}</div>

@@ -20,7 +20,7 @@ import { storeToRefs } from 'pinia'
 
 export default {
     name: 'MapboxComponent',
-    setup() {
+    setup(props, { emit }) {
         const mapContainer = ref(null);
 
         let portMarkers: mapboxgl.Marker[] = [];
@@ -30,7 +30,6 @@ export default {
         const shipsStore = useShipsStore();
 
         const addMarkers = (items: any[], markersArray: mapboxgl.Marker[], color?: string) => {
-            
             for (const item of items) {
                 const [longitude, latitude] = item.geometry.coordinates;
                 const options: mapboxgl.MarkerOptions = { rotationAlignment: 'horizon' };
@@ -45,6 +44,10 @@ export default {
                 if (!color) { /* Right now markers without color are ships... will need to change later */
                     const shipName = item.properties['Vessel Name'];
                     shipMarkersMap[shipName] = marker;
+
+                    marker.getElement().addEventListener('click', () => {
+                        emit('ship-marker-clicked', shipName);
+                    });
                 }
             }
         };
