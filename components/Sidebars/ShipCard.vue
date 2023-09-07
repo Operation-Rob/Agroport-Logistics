@@ -8,14 +8,14 @@
       <div class="text-sm">Cargo: {{ cargo }}</div>
       <div class="text-sm">Volume: {{ volume }}</div>
       <div class="text-sm">Origin: {{ origin }}</div>
-      <a :href="link" target="_blank" rel="noopener noreferrer" class="inline-block bg-al-green hover:bg-[#6ff283] active:bg-[#4fa156] px-4 py-2 rounded mt-2 transition ease-in-out duration-150">
+      <a :href="link" target="_blank" rel="noopener noreferrer" class="inline-block bg-al-green hover:bg-[#6ff283] active:bg-[#4fa156] px-2 py-1 rounded mt-2 transition text-sm ease-in-out duration-150">
         MarineTraffic
       </a>
     </div>
 
     <!-- Right half of the card -->
-    <div :style="probabilityStyle" class="w-1/2 flex items-center justify-center">
-      <div class="text-4xl">{{ formattedProbability }}</div>
+    <div :style="probabilityStyle" class="w-1/2 flex items-center justify-center" @click="cardClicked">
+      <div class="text-2xl">{{ formattedProbability }}</div>
     </div>
   </li>
 </template>
