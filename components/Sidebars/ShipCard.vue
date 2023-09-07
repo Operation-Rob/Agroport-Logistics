@@ -12,30 +12,11 @@
 
 <script lang="ts">
 export default {
-    name: 'ShipCard',
-    props: {
-        shipName: {
-            type: String,
-            required: true
-        },
-        shipType: {
-            type: String,
-            required: true
-        },
-        eta: {
-            type: String,
-            required: true,
-            default: 'N/A',
-        },
-        cargo: {
-            type: String,
-            required: true,
-            default: 'N/A',
-        },
-        volume: {
-            type: String,
-            required: true
-        }
+  name: "ShipCard",
+  props: {
+    shipName: {
+      type: String,
+      required: true,
     },
     shipType: {
       type: String,
@@ -44,15 +25,33 @@ export default {
     eta: {
       type: String,
       required: true,
+      default: "N/A",
     },
     cargo: {
       type: String,
       required: true,
+      default: "N/A",
     },
     volume: {
       type: String,
       required: true,
     },
+  },
+  shipType: {
+    type: String,
+    required: true,
+  },
+  eta: {
+    type: String,
+    required: true,
+  },
+  cargo: {
+    type: String,
+    required: true,
+  },
+  volume: {
+    type: String,
+    required: true,
   },
   methods: {
     cardClicked() {
