@@ -8,6 +8,7 @@ let typedGeojsonData = (portsGeoJson as any) as ShipFeatureCollection;
 
 export interface shipFilters {
     product: string | null;
+    origin: string | null;
 }
 
 export const useShipsStore = defineStore({
@@ -16,41 +17,33 @@ export const useShipsStore = defineStore({
         ships: typedGeojsonData,
         filters: {
             product : null,
+            origin: null
         }
     }),
     getters: {
         filteredShips(): ShipFeature[] {
             // Filter the ships based on the filters
-<<<<<<< HEAD
-            let filtered = this.ships.features;
+            let filteredShips = this.ships.features;
 
-            if (this.filters.cargo && this.filters.cargo !== 'All') {
-                filtered = filtered.filter(ship => ship.properties['Product'] === this.filters.cargo);
-            }
-
-            if (this.filters.country && this.filters.country !== 'All') {
-                console.log(this.filters.country);
-                filtered = filtered.filter(ship => ship.properties['Origin Port Country'] === this.filters.country);
-            }
-
-            return filtered;
-        }
-    },
-    actions: {
-        setFilter(key: string, value: unknown) {
-            this.filters[key] = value;
-=======
             if (this.filters.product) {
-                return this.ships.features.filter((ship: ShipFeature) => ship.properties['Product'] === this.filters.product);
+                filteredShips = filteredShips.filter((ship: ShipFeature) => ship.properties['Product'] === this.filters.product);
             }
 
-            return this.ships.features;
+            if (this.filters.origin) {
+                filteredShips = filteredShips.filter((ship: ShipFeature) => ship.properties['Origin Port Country'] === this.filters.origin);
+            }
+
+            return filteredShips;
         }
     },
     actions: {
-        setFilters(newFilters: shipFilters) {
-            this.filters = newFilters;
->>>>>>> ports
+        setFilters(key: keyof shipFilters, value: string | null) {
+            // Check for a valid key to avoid runtime errors
+            if (key in this.filters) {
+                this.filters[key] = value;
+            } else {
+                console.error(`Invalid key: ${key}`);
+            }
         }
     }
 });

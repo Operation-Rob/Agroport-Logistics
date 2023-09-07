@@ -4,10 +4,9 @@
         <div class="space-y-1">
         <div>
             Cargo:
-            <select v-model="cargo" class="bg-gray-200 text-black px-1 rounded absolute right-2 border-2 border-gray-600 w-36">
+            <select v-model="product" class="bg-gray-200 text-black px-1 rounded absolute right-2 border-2 border-gray-600 w-36">
                 <option>All</option>
-                <option>Any fertiliser</option>
-                <option>Fertiliser 1</option>
+                <option>Urea</option>
                 <option>Fertiliser 2</option>
                 <option>Fertiliser 3</option>
             </select>
@@ -31,34 +30,46 @@ import { ref, watch } from 'vue';
 import { useShipsStore } from '@/stores/shipsStore';
 
 type CountryCodeMapping = {
-    [key: string]: string;
+    [key: string]: string | null;
+};
+
+type ProductMapping = {
+    [key: string]: string | null;
 };
 
 const countryCodeMapping: CountryCodeMapping = {
-    "All": "All",
+    "All": null,
     "Indonesia": "IN",
     "China": "CN",
     "South Korea": "KR", // not sure about this one, but maybe we just don't have any data for it?
 };
 
+const productMapping: ProductMapping = {
+    "All": null,
+    "Urea": "Urea",
+    "Fertiliser 2": "FERTILISER2",
+    "Fertiliser 3": "FERTILISER3",
+};
+
 export default {
     name: 'RightSidebar',
     setup() {
-        const cargo = ref('All');
+        const product = ref('All');
         const country = ref('All');
         const shipsStore = useShipsStore();
-
-        watch(cargo, (newCargoValue) => {
-            shipsStore.setFilter('cargo', newCargoValue);
+        
+        watch(product, (newCargoValue) => {
+            const mappedProduct = productMapping[newCargoValue];
+            shipsStore.setFilters('product', mappedProduct);
         });
 
         watch(country, (newCountryValue) => {
             const countryCode = countryCodeMapping[newCountryValue];
-            shipsStore.setFilter('country', countryCode);
+            shipsStore.setFilters('origin', countryCode);
         });
 
         return {
-            cargo,
+            product,
             country
         };
     }

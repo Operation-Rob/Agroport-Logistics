@@ -20,16 +20,23 @@ export const usePortsStore = defineStore({
     getters: {
         filteredPorts(): PortFeature[] {
             // Filter the ports based on the product they're carrying
+            let filteredPorts = this.ports.features;
+
             if (this.filters.product) {
-                return this.ports.features.filter((port: PortFeature) => port.properties['Primary Export'] === this.filters.product);
+                filteredPorts = filteredPorts.filter((port: PortFeature) => port.properties['Primary Export'] === this.filters.product);
             }
 
-            return this.ports.features;
+            return filteredPorts;
         }
     },
     actions: {
-        setFilters(newFilters: portFilters) {
-            this.filters = newFilters;
+        setFilters(key: keyof portFilters, value: string | null) {
+            // Check for a valid key to avoid runtime errors
+            if (key in this.filters) {
+                this.filters[key] = value;
+            } else {
+                console.error(`Invalid key: ${key}`);
+            }
         }
     }
 });
