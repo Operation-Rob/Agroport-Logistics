@@ -48,7 +48,7 @@ selectedVessels.forEach((ship: ShipFeature) => {
 });
 
 
-typedGeojsonData.features = selectedVessels;
+typedGeojsonData.features = selectedVessels.slice(0, 100);
 
 export interface shipFilters {
     product: string | null;
@@ -72,7 +72,7 @@ export const useShipsStore = defineStore({
             // Filter the ships based on the filters
             let filteredShips = state.ships.features;
 
-            if (state. filters.product) {
+            if (state.filters.product) {
                 filteredShips = filteredShips.filter((ship: ShipFeature) => ship.properties['product'] === state.filters.product);
             }
 
