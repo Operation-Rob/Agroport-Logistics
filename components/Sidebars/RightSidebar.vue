@@ -58,6 +58,8 @@ export default {
         const country = ref('All');
         const shipsStore = useShipsStore();
         
+        console.log(shipsStore);
+
         watch(product, (newCargoValue) => {
             const mappedProduct = productMapping[newCargoValue];
             shipsStore.setFilters('product', mappedProduct);
