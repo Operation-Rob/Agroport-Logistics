@@ -84,18 +84,10 @@ import { vOnClickOutside } from "@vueuse/components";
 const leftSidebarOpen = ref(false);
 const rightSidebarOpen = ref(false);
 
-// export default {
-//   components: {
-//     MapboxComponent,
-//     LeftSidebar,
-//     RightSidebar,
-//     Header,
-//     Footer,
-//   },
-//   methods: {
-//     focusOnShip(shipName: string) {
-//       this.$refs.mapboxRef.zoomToShip(shipName);
-//     },
-//   },
-// };
+const mapboxRef = ref(null);
+
+const focusOnShip = (shipname) => {
+  mapboxRef.value.zoomToShip(shipname);
+  leftSidebarOpen.value = false;
+};
 </script>
