@@ -1,5 +1,5 @@
 <template>
-  <div class="flex items-center justify-center bg-black">
+  <div class="flex items-center justify-around bg-black">
     <div
       class="md:invisible border-none rounded-lg bg-zinc-800 p-1"
       @click="
