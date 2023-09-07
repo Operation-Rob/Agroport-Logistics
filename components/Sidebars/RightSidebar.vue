@@ -160,11 +160,6 @@ export default {
         
         console.log(shipsStore);
 
-        watch(product, (newCargoValue) => {
-            const mappedProduct = productMapping[newCargoValue];
-            shipsStore.setFilters('product', mappedProduct);
-        });
-
     watch(product, (newCargoValue) => {
       const mappedProduct = productMapping[newCargoValue];
       shipsStore.setFilters("product", mappedProduct);
