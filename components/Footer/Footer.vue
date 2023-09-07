@@ -1,17 +1,16 @@
-
 <template>
-
-<footer >
-    <div class="px-4 py-2 bg-black md:flex md:items-center md:justify-between">
-        <span class="text-sm text-white sm:text-center"> Created by Agroport Logistics Team
-        </span>
-    </div>
-</footer>
-
+  <div
+    class="absolute bottom-0 flex w-full px-4 py-2 bg-black justify-center drop-shadow-xl"
+  >
+    <span class="text-sm text-white sm:text-center">
+      Created by
+      <p class="font-bold">Agroport Logistics Team</p>
+    </span>
+  </div>
 </template>
-  
+
 <script>
-  export default {
-    name: 'FooterComponent'
-  }
+export default {
+  name: "FooterComponent",
+};
 </script>
