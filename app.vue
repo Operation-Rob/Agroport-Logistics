@@ -38,7 +38,10 @@
             "
             :class="`bg-white rounded-2xl ${size}`"
           >
-            <LeftSidebar class="w-2/3" @focus-on-ship="focusOnShip" />
+            <LeftSidebar
+              class="w-2/3 drop-shadow-2xl"
+              @focus-on-ship="focusOnShip"
+            />
           </div>
         </div>
       </transition>
@@ -61,7 +64,7 @@
             "
             :class="`bg-white rounded-2xl ${size}`"
           >
-            <RightSidebar class="w-2/3" />
+            <RightSidebar class="w-2/3 drop-shadow-2xl" />
           </div>
         </div>
       </transition>
