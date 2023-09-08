@@ -17,9 +17,9 @@ interface ShipProperties {
   Flag: string | null;
   'Vessel Name': string | null;
   'Destination Port': string | null;
-  'Reported Eta': number | null;
+  'Reported Eta': string | null;
   'Reported Destination': string | null;
-  'Calculated Eta': number | null;
+  'Calculated Eta': string | null;
   'Current Port': string | null;
   Imo: number | null;
   'Vessel Type - Generic': string | null;
@@ -30,13 +30,13 @@ interface ShipProperties {
   Draught: number | null;
   'Draught Max': number | null;
   'Draught Min': number | null;
-  'Load Condition': number | null;
+  'Load Condition': string | null;
   'Vessel Type - Detailed': string | null;
   'Capacity - Gt': number | null;
   'Capacity - Teu': number | null;
   'Capacity - Liquid Gas': number | null;
   'Capacity - Passengers': number | null;
-  'Launch Date': number | null;
+  'Launch Date': string | null;
   'Length Between Perpendiculars': number | null;
   'Length Registered': number | null;
   Depth: number | null;
@@ -60,7 +60,7 @@ interface ShipProperties {
   Heading: number | null;
   'Distance To Go': number | null;
   'Commercial Market': string | null;
-  'Commercial Size Class': number | null;
+  'Commercial Size Class': string | null;
   'Last Underway Timestamp': string | null;
   'First Ais Position Date': string | null;
   'Idle Time While Underway': number | null;
@@ -88,7 +88,6 @@ interface PortFeatureCollection {
 }
 
 interface ShipFeature {
-    id: string;
     type: "Feature";
     properties: ShipProperties;
     geometry: Geometry;
