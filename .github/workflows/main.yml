@@ -29,8 +29,9 @@ jobs:
       run: npm run build
 
     - name: Deploy to Azure
-      uses: azure/webapps-deploy@v2
+      uses: azure/static-webapps-deploy@v1
       with:
-        app-name: agroport-logistics
-        publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
-        package: '.output/server'
+        azure_static_web_apps_api_token: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+        app_location: '/'
+        api_location: '.output/server'
+        output_location: '.output/public'
