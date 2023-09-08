@@ -66,7 +66,7 @@
             <option>Port Hedland</option>
           </select>
         </div>
-        <div class="text-sm">
+        <div class="text-sm pb-2">
           Select Vessel Type
           <select
             v-model="vesselType"
@@ -76,6 +76,14 @@
             <option>Bulk Carrier</option>
             <option>Oil/Chemical Tanker</option>
           </select>
+        </div>
+        <div>
+          <button
+            class="bg-green-400 w-full text-black font-bold border border-none rounded-md"
+            @click="resetFilters"
+          >
+            Reset Filter
+          </button>
         </div>
       </div>
     </div>
@@ -215,6 +223,15 @@ export default {
       destPort,
       vesselType,
     };
+  },
+  methods: {
+    resetFilters() {
+      this.product = "All";
+      this.originCountry = "All";
+      this.destCountry = "All";
+      this.destPort = "All";
+      this.vesselType = "All";
+    },
   },
 };
 </script>
