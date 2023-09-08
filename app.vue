@@ -17,60 +17,31 @@
 
     <main class="h-[90%] overflow-y-hidden">
       <LeftSidebar
-        class="invisible md:visible transition w-1/5"
+        v-on-click-outside="
+          () => {
+            leftSidebarOpen = false;
+          }
+        "
+        class="md:-translate-x-0 md:w-1/5 transition-transform w-2/3"
+        :class="{ '-translate-x-full': !leftSidebarOpen }"
         ref="leftSidebarRef"
         @focus-on-ship="focusOnShip"
       />
 
-      <transition
-        enter-from-class="opacity-0"
-        leave-to-class="opacity-0"
-        enter-active-class="transition duration-200"
-        leave-active-class="transition duration-200"
-      >
-        <div
-          v-if="leftSidebarOpen"
-          class="flex justify-center items-center fixed top-0 z-50 left-0 w-full h-full bg-stone-200 bg-opacity-10 backdrop-blur-sm transition"
-        >
-          <div
-            v-on-click-outside="
-              () => {
-                leftSidebarOpen = false;
-              }
-            "
-            :class="`bg-white rounded-2xl ${size}`"
-          >
-            <LeftSidebar
-              class="w-2/3 drop-shadow-2xl"
-              @focus-on-ship="focusOnShip"
-            />
-          </div>
-        </div>
-      </transition>
-      <RightSidebar class="invisible md:visible w-1/5" />
-      <transition
-        enter-from-class="opacity-0"
-        leave-to-class="opacity-0"
-        enter-active-class="transition duration-200"
-        leave-active-class="transition duration-200"
-      >
-        <div
-          v-if="rightSidebarOpen"
-          class="flex justify-center items-center fixed top-0 z-50 left-0 w-full h-full bg-stone-200 bg-opacity-10 backdrop-blur-sm transition"
-        >
-          <div
-            v-on-click-outside="
-              () => {
-                rightSidebarOpen = false;
-              }
-            "
-            :class="`bg-white rounded-2xl ${size}`"
-          >
-            <RightSidebar class="w-2/3 drop-shadow-2xl" />
-          </div>
-        </div>
-      </transition>
-      <MapboxComponent ref="mapboxRef" class="w-full h-screen" @ship-marker-clicked="handleMarkerClick" />
+      <RightSidebar
+        v-on-click-outside="
+          () => {
+            rightSidebarOpen = false;
+          }
+        "
+        class="md:translate-x-0 md:w-1/5 transition-transform w-2/3"
+        :class="{ 'translate-x-full': !rightSidebarOpen }"
+      />
+      <MapboxComponent
+        ref="mapboxRef"
+        class="w-full h-screen"
+        @ship-marker-clicked="handleMarkerClick"
+      />
     </main>
     <Footer class="h-[5%] z-20" />
   </div>
@@ -94,6 +65,7 @@ const focusOnShip = (shipname) => {
   leftSidebarOpen.value = false;
 };
 const handleMarkerClick = (shipName) => {
+  leftSidebarOpen.value = true;
   leftSidebarRef.value.scrollToShipCard(shipName);
 };
 </script>
