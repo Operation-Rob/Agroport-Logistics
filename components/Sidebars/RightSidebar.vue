@@ -24,15 +24,18 @@
             class="block py-2.5 px-0 w-full text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-200 appearance-none dark:text-gray-400 dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-200 peer"
           >
             <option>All</option>
-            <option>Russia</option>
-            <option>Qatar</option>
-            <option>Saudi Arabia</option>
-            <option>United Arab Emirates</option>
-            <option>Bahrain</option>
-            <option>Trinidad & Tobago</option>
+            <option>Oman</option>
+            <option>Canada</option>
+            <option>China</option>
+            <option>United States of America</option>
+            <option>Australia</option>
+            <option>Japan</option>
+            <option>South Korea</option>
+            <option>Taiwan</option>
+            <option>Hong Kong</option>
             <option>Indonesia</option>
             <option>Malaysia</option>
-            <option>Jordan</option>
+            <option>United Arab Emirates</option>
           </select>
         </div>
 
@@ -44,40 +47,6 @@
           >
             <option>All</option>
             <option>Australia</option>
-            <option>Turkey</option>
-            <option>Spain</option>
-            <option>Israel</option>
-            <option>Libya</option>
-            <option>Bangladesh</option>
-            <option>Algeria</option>
-            <option>China</option>
-            <option>United Arab Emirates</option>
-            <option>South Africa</option>
-            <option>Brazil</option>
-            <option>Indonesia</option>
-            <option>Egypt</option>
-            <option>United States of America</option>
-            <option>Tunisia</option>
-            <option>Mexico</option>
-            <option>Greece</option>
-            <option>Russia</option>
-            <option>Pakistan</option>
-            <option>Singapore</option>
-            <option>Saudi Arabia</option>
-            <option>Yemen</option>
-            <option>Oman</option>
-            <option>Iraq</option>
-            <option>Kenya</option>
-            <option>Venezuela</option>
-            <option>Tanzania</option>
-            <option>Italy</option>
-            <option>Trinidad & Tobago</option>
-            <option>Chile</option>
-            <option>Phillipines</option>
-            <option>Japan</option>
-            <option>Thailand</option>
-            <option>India</option>
-            <option>Canada</option>
           </select>
         </div>
         <div
@@ -90,12 +59,11 @@
             class="block py-2.5 px-0 w-full text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-200 appearance-none dark:text-gray-400 dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-200 peer"
           >
             <option>All</option>
+            <option>Sydney</option>
+            <option>Dampier</option>
             <option>Fremantle</option>
             <option>Kwinana</option>
-            <option>Bunbury</option>
-            <option>Albany</option>
-            <option>Esperance</option>
-            <option>Geraldton</option>
+            <option>Port Hedland</option>
           </select>
         </div>
         <div class="text-sm">
@@ -180,6 +148,9 @@ const countryCodeMapping: CountryCodeMapping = {
   Thailand: "TH",
   India: "ID",
   Canada: "CA",
+  "South Korea": "KR",
+  Taiwan: "TW",
+  "Hong Kong": "HK"
 };
 
 const productMapping: ProductMapping = {
