@@ -4,12 +4,18 @@
     class="outline cursor-pointer rounded-md bg-gray-950 flex min-w-full"
   >
     <div class="p-2 pt-1 min-w-full" @click="cardClicked">
-      <div>{{ shipName }}</div>
+      <div class="flex flex-row justify-between">
+        <p class="font-bold">{{ shipName }}</p>
+        <img
+          class="w-10 h-10 object-none rounded-full border border-zinc-700"
+          :src="`https://flagsapi.com/${origin}/flat/64.png`"
+          alt=""
+        />
+      </div>
       <div class="italic text-sm">{{ shipType }}</div>
       <div class="text-sm">ETA: {{ eta }}</div>
       <div class="text-sm">Cargo: {{ cargo }}</div>
       <div class="text-sm">Volume: {{ volume }}</div>
-      <div class="text-sm">Origin: {{ origin }}</div>
       <a
         :href="link"
         target="_blank"
