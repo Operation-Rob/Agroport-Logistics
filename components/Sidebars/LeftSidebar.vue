@@ -16,6 +16,7 @@
             :eta="ship.properties['Calculated Eta']?.toString()"
             :volume="(ship.properties['Capacity - Gt'] ?? 0).toString()"
             :origin="ship.properties['Origin Port Country']?.toString()"
+            :destination="ship.properties['Destination Port']?.toString()"
             :probability="
               ship.properties[
                 'P(Fertiliser | Origin, Destination=Australia)'

@@ -16,6 +16,8 @@
       <div class="text-sm">ETA: {{ eta }}</div>
       <div class="text-sm">Cargo: {{ cargo }}</div>
       <div class="text-sm">Volume: {{ volume }}</div>
+      <div class="text-sm">Origin: {{ origin }}</div>
+      <div class="text-sm">Destination: {{ destination }}</div>
       <a
         :href="link"
         target="_blank"
@@ -84,6 +86,11 @@ export default {
       required: true,
       default: "Unknown",
     },
+    destination: {
+      type: String,
+      required: true,
+      default: "Unknown",
+    }
   },
   shipType: {
     type: String,
@@ -106,6 +113,10 @@ export default {
     required: true,
   },
   imo: {
+    type: String,
+    required: true,
+  },
+  destination: {
     type: String,
     required: true,
   },
