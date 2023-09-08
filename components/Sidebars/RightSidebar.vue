@@ -205,9 +205,10 @@ export default {
       const mappedProduct = productMapping[newCargoValue];
       if (mappedProduct === "UAN") {
         shipsStore.setFilters("vesselType", "Oil/Chemical Tanker");
-      }
-      if (mappedProduct === "Urea" || mappedProduct === "MOP") {
+      } else if (mappedProduct === "Urea" || mappedProduct === "MOP") {
         shipsStore.setFilters("vesselType", "Bulk Carrier");
+      } else {
+        shipsStore.setFilters("vesselType", null);
       }
       //shipsStore.setFilters("product", mappedProduct);
     });
