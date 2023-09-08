@@ -62,7 +62,7 @@ export default {
 
         onMounted(() => {
             const runtimeConfig = useRuntimeConfig();
-            mapboxgl.accessToken = runtimeConfig.public.mapboxToken;
+            mapboxgl.accessToken = process.env.MAPBOX_TOKEN || runtimeConfig.public.mapboxToken;
 
             state.map = new mapboxgl.Map({
                 container: (mapContainer.value as any) as HTMLElement,
