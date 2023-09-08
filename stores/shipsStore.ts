@@ -53,11 +53,7 @@ selectedVessels.forEach((ship: ShipFeature) => {
     shipQuantityMap[ship.id] = result;
 });
 
-
-
-
-
-typedGeojsonData.features = selectedVessels.slice(0, 400);
+typedGeojsonData.features = selectedVessels.slice(0, 100);
 
 export interface shipFilters {
     product: string | null;
