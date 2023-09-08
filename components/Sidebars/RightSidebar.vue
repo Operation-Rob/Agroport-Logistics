@@ -5,11 +5,11 @@
     <div class="outline rounded-md bg-gray-950 p-2 pt-1">
       <h1 class="font-bold underline pb-2 pl-2 text-lg">Filters</h1>
       <div class="space-y-1">
-        <div class="text-sm">
-          Cargo:
+        <div class="text-sm pb-2">
+          Select Cargo
           <select
             v-model="product"
-            class="bg-gray-200 text-black text-sm px-1 rounded absolute right-2 border-2 border-gray-600 w-36"
+            class="block py-2.5 px-0 w-full text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-200 appearance-none dark:text-gray-400 dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-200 peer"
           >
             <option>All</option>
             <option>Urea</option>
@@ -17,11 +17,11 @@
             <option>MOP</option>
           </select>
         </div>
-        <div class="text-sm">
-          Origin Country:
+        <div class="text-sm pb-2">
+          Select Origin Country
           <select
             v-model="originCountry"
-            class="bg-gray-200 text-black text-sm px-1 rounded absolute right-2 border-2 border-gray-600 w-36"
+            class="block py-2.5 px-0 w-full text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-200 appearance-none dark:text-gray-400 dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-200 peer"
           >
             <option>All</option>
             <option>Russia</option>
@@ -35,11 +35,12 @@
             <option>Jordan</option>
           </select>
         </div>
-        <div class="text-sm">
-          Dest. Country:
+
+        <div class="text-sm pb-2">
+          Select Destination Country
           <select
             v-model="destCountry"
-            class="bg-gray-200 text-black px-1 text-sm rounded absolute right-2 border-2 border-gray-600 w-36"
+            class="block py-2.5 px-0 w-full text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-200 appearance-none dark:text-gray-400 dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-200 peer"
           >
             <option>All</option>
             <option>Australia</option>
@@ -79,11 +80,14 @@
             <option>Canada</option>
           </select>
         </div>
-        <div class="text-sm" v-if="destCountry=='All'||destCountry=='Australia'">
-          Dest. Port:
+        <div
+          class="text-sm"
+          v-if="destCountry == 'All' || destCountry == 'Australia'"
+        >
+          Select Destination Port
           <select
             v-model="destPort"
-            class="bg-gray-200 text-black px-1 text-sm rounded absolute right-2 border-2 border-gray-600 w-36"
+            class="block py-2.5 px-0 w-full text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-200 appearance-none dark:text-gray-400 dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-200 peer"
           >
             <option>All</option>
             <option>Fremantle</option>
@@ -95,10 +99,10 @@
           </select>
         </div>
         <div class="text-sm">
-          Vessel Type:
+          Select Vessel Type
           <select
             v-model="vesselType"
-            class="bg-gray-200 text-black px-1 text-sm rounded absolute right-2 border-2 border-gray-600 w-36"
+            class="block py-2.5 px-0 w-full text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-200 appearance-none dark:text-gray-400 dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-200 peer"
           >
             <option>All</option>
             <option>Bulk Carrier</option>
@@ -108,15 +112,17 @@
       </div>
     </div>
     <div class="outline rounded-md bg-gray-950 p-2 pt-1">
-      <h1 class="font-bold underline pb-2 pl-2 text-base">Projected Incoming Fertiliser</h1>
-      <img src="@/assets/graph.png"/>
+      <h1 class="font-bold underline pb-2 pl-2 text-base">
+        Projected Incoming Fertiliser
+      </h1>
+      <img src="@/assets/graph.png" />
     </div>
     <div class="pr-4 w-full absolute bottom-9">
-    <button
-      class="bg-al-green hover:bg-[#6ff283] active:bg-[#4fa156] pl-2 rounded w-full text-black font-bold"
-    >
-      Export
-    </button>
+      <button
+        class="bg-al-green hover:bg-[#6ff283] active:bg-[#4fa156] pl-2 rounded w-full text-black font-bold"
+      >
+        Export
+      </button>
     </div>
   </div>
 </template>
@@ -184,16 +190,16 @@ const productMapping: ProductMapping = {
 };
 
 export default {
-    name: 'RightSidebar',
-    setup() {
-        const product = ref('All');
-        const originCountry = ref('All');
-        const destCountry = ref('All');
-        const destPort = ref('All');
-        const vesselType = ref('All');
-        const shipsStore = useShipsStore();
+  name: "RightSidebar",
+  setup() {
+    const product = ref("All");
+    const originCountry = ref("All");
+    const destCountry = ref("All");
+    const destPort = ref("All");
+    const vesselType = ref("All");
+    const shipsStore = useShipsStore();
 
-        console.log(shipsStore);
+    console.log(shipsStore);
 
     watch(product, (newCargoValue) => {
       const mappedProduct = productMapping[newCargoValue];
@@ -217,11 +223,17 @@ export default {
     });
 
     watch(destPort, (newDestPortValue) => {
-      shipsStore.setFilters("destPort", newDestPortValue==='All'?null:newDestPortValue.toUpperCase());
+      shipsStore.setFilters(
+        "destPort",
+        newDestPortValue === "All" ? null : newDestPortValue.toUpperCase()
+      );
     });
 
     watch(vesselType, (newVesselTypeValue) => {
-      shipsStore.setFilters("vesselType", newVesselTypeValue==='All'?null:newVesselTypeValue);
+      shipsStore.setFilters(
+        "vesselType",
+        newVesselTypeValue === "All" ? null : newVesselTypeValue
+      );
     });
 
     return {
@@ -229,7 +241,7 @@ export default {
       originCountry,
       destCountry,
       destPort,
-      vesselType
+      vesselType,
     };
   },
 };
