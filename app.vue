@@ -22,7 +22,7 @@
             leftSidebarOpen = false;
           }
         "
-        class="md:-translate-x-0 md:w-1/5 transition-transform w-2/3"
+        class="z-50 md:-translate-x-0 md:w-1/5 transition-transform w-2/3"
         :class="{ '-translate-x-full': !leftSidebarOpen }"
         ref="leftSidebarRef"
         @focus-on-ship="focusOnShip"
@@ -34,7 +34,7 @@
             rightSidebarOpen = false;
           }
         "
-        class="md:translate-x-0 md:w-1/5 transition-transform w-2/3"
+        class="z-50 md:translate-x-0 md:w-1/5 transition-transform w-2/3"
         :class="{ 'translate-x-full': !rightSidebarOpen }"
       />
       <MapboxComponent
