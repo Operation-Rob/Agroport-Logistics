@@ -65,6 +65,7 @@ const focusOnShip = (shipname) => {
   leftSidebarOpen.value = false;
 };
 const handleMarkerClick = (shipName) => {
+  leftSidebarOpen.value = true;
   leftSidebarRef.value.scrollToShipCard(shipName);
 };
 </script>
