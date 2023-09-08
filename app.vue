@@ -43,7 +43,7 @@
         @ship-marker-clicked="handleMarkerClick"
       />
     </main>
-    <Footer class="h-[5%] z-20" />
+    <Footer class="z-20" />
   </div>
 </template>
 
