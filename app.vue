@@ -105,6 +105,13 @@ import { vOnClickOutside } from "@vueuse/components";
 import SvgIcon from "@jamescoyle/vue-icon";
 import { mdiEmail, mdiLinkedin, mdiGithub } from "@mdi/js";
 
+import conorImage from "~/assets/conor.jpg";
+import michaelImage from "~/assets/michael.jpg";
+import tristanImage from "~/assets/tristan.jpg";
+import nickImage from "~/assets/nick.jpg";
+import karamImage from "~/assets/karam.jpg";
+import jordanImage from "~/assets/jordan.jpg";
+
 const leftSidebarOpen = ref(false);
 const rightSidebarOpen = ref(false);
 
@@ -114,12 +121,12 @@ const mapboxRef = ref(null);
 const leftSidebarRef = ref(null);
 
 const members = ref([
-  {name: "Conor Bennett", image: "~/assets/conor.png", linkedin: "cjnbennett", email: "conor.jn.bennett@gmail.com", github: "cjnbennett"},
-  {name: "Michael Nefiodovas", image: "~/assets/michael.png", linkedin: "michael-nef", email: "michael@nef.net.au", github: "MouseAndKeyboard"},
-  {name: "Tristan Robertson", image: "~/assets/tristan.png", email: "everyusernameistaken25@gmail.com", github: "Scrumptious13"},
-  {name: "Nicholas Michlin", image: "~/assets/nick.png", linkedin: "nicholas-michlin-714a74207", email: "nicholas.hy.michlin@gmail.com", github: "nicodeas"},
-  {name: "Karam Thethy", image: "~/assets/karam.png", linkedin: "karam-thethy", email: "thethyka@gmail.com", github: "thethyka"},
-  {name: "Jordan Fisker", image: "~/assets/jordan.png", linkedin: "jordan-fisker-78b597230", email: "jordanfisker@outlook.com", github: "otta8634"}
+  {name: "Conor Bennett", image: conorImage, linkedin: "cjnbennett", email: "conor.jn.bennett@gmail.com", github: "cjnbennett"},
+  {name: "Michael Nefiodovas", image: michaelImage, linkedin: "michael-nef", email: "michael@nef.net.au", github: "MouseAndKeyboard"},
+  {name: "Tristan Robertson", image: tristanImage, linkedin: "tristan-robertson-16bb33280", email: "everyusernameistaken25@gmail.com", github: "Scrumptious13"},
+  {name: "Nicholas Michlin", image: nickImage, linkedin: "nicholas-michlin-714a74207", email: "nicholas.hy.michlin@gmail.com", github: "nicodeas"},
+  {name: "Karam Thethy", image: karamImage, linkedin: "karam-thethy", email: "thethyka@gmail.com", github: "thethyka"},
+  {name: "Jordan Fisker", image: jordanImage, linkedin: "jordan-fisker-78b597230", email: "jordanfisker@outlook.com", github: "otta8634"}
 ]);
 
 const focusOnShip = (shipname) => {
