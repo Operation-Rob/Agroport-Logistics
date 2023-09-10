@@ -1,6 +1,6 @@
 <template>
   <title>Agroport Logistics</title>
-  <div class="h-screen flex flex-col overflow-hidden">
+  <div v-if="continued" class="h-screen flex flex-col overflow-hidden">
     <Header
       @left="
         () => {
@@ -45,6 +45,53 @@
     </main>
     <Footer class="h-[5%] z-20" />
   </div>
+  <div v-else class="flex h-screen items-center bg-gray-950 text-white">
+    <div>
+      <h1 class="text-3xl text-center font-bold">Thank you for participating in our demo!</h1>
+      <p class="text-center">If you liked it, feel free to contact us using any of the methods listed below:</p>
+      <br/>
+      <div>
+        <ul class="flex w-screen justify-center gap-10">
+          <li v-for="member in members" class="flex flex-col rounded border-white border-2 w-40">
+            <img class="rounded-full border-white border-[1px] mx-6 mb-1 mt-2" :src="member.image" />
+            <h1 class="font-bold text-center">{{ member.name }}</h1>
+            <div class="flex justify-center pb-2">
+              <a v-if="member.email" :href="`mailto:${member.email}`">
+                <svg-icon
+                type="mdi"
+                :path="mdiEmail"
+                size="26"
+                ></svg-icon>
+              </a>
+              <a v-if="member.linkedin" :href="`https://www.linkedin.com/in/${member.linkedin}/`">
+                <svg-icon
+                type="mdi"
+                :path="mdiLinkedin"
+                size="26"
+                ></svg-icon>
+              </a>
+              <a v-if="member.github" :href="`https://www.github.com/${member.github}/`">
+                <svg-icon
+                type="mdi"
+                :path="mdiGithub"
+                size="26"
+                ></svg-icon>
+              </a>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <br/><br/>
+      <div class="flex flex-col gap-1">
+        <p class="text-center">Still want to play around?</p>
+        <div class="flex justify-center">
+          <button @click="continueToDemo()" class="rounded border-white border-2 px-1 hover:border-blue-600 hover:text-blue-500">
+            Continue to demo... &raquo;
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script setup>
@@ -54,11 +101,26 @@ import RightSidebar from "../components/Sidebars/RightSidebar.vue";
 import Header from "../components/Header/Header.vue";
 import Footer from "../components/Footer/Footer.vue";
 import { vOnClickOutside } from "@vueuse/components";
+
+import SvgIcon from "@jamescoyle/vue-icon";
+import { mdiEmail, mdiLinkedin, mdiGithub } from "@mdi/js";
+
 const leftSidebarOpen = ref(false);
 const rightSidebarOpen = ref(false);
 
+const continued = ref(false);
+
 const mapboxRef = ref(null);
 const leftSidebarRef = ref(null);
+
+const members = ref([
+  {name: "Conor Bennett", image: "~/assets/conor.png", linkedin: "cjnbennett", email: "conor.jn.bennett@gmail.com", github: "cjnbennett"},
+  {name: "Michael Nefiodovas", image: "~/assets/michael.png", linkedin: "michael-nef", email: "michael@nef.net.au", github: "MouseAndKeyboard"},
+  {name: "Tristan Robertson", image: "~/assets/tristan.png", email: "everyusernameistaken25@gmail.com", github: "Scrumptious13"},
+  {name: "Nicholas Michlin", image: "~/assets/nick.png", linkedin: "nicholas-michlin-714a74207", email: "nicholas.hy.michlin@gmail.com", github: "nicodeas"},
+  {name: "Karam Thethy", image: "~/assets/karam.png", linkedin: "karam-thethy", email: "thethyka@gmail.com", github: "thethyka"},
+  {name: "Jordan Fisker", image: "~/assets/jordan.png", linkedin: "jordan-fisker-78b597230", email: "jordanfisker@outlook.com", github: "otta8634"}
+]);
 
 const focusOnShip = (shipname) => {
   mapboxRef.value.zoomToShip(shipname);
@@ -67,5 +129,9 @@ const focusOnShip = (shipname) => {
 const handleMarkerClick = (shipName) => {
   leftSidebarOpen.value = true;
   leftSidebarRef.value.scrollToShipCard(shipName);
+};
+
+const continueToDemo = () => {
+  continued.value = true;
 };
 </script>
