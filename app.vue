@@ -51,7 +51,7 @@
       <p class="text-center">If you liked it, feel free to contact us using any of the methods listed below:</p>
       <br/>
       <div>
-        <ul class="flex w-screen justify-center gap-10">
+        <ul class="flex flex-wrap w-screen justify-center gap-10 w-screen">
           <li v-for="member in members" class="flex flex-col rounded border-white border-2 w-40">
             <img class="rounded-full border-white border-[1px] mx-6 mb-1 mt-2" :src="member.image" />
             <h1 class="font-bold text-center">{{ member.name }}</h1>
